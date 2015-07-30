@@ -1,0 +1,84 @@
+{
+  "name": "mysql-orm",
+  "version": "1.0.0",
+  "description": "MySQL Data Mapper",
+  "main": "lib/index.js",
+  "scripts": {
+    "build-doc": "mkdir -p out; cp node_modules/spec-md/css/* out; spec-md doc/index.md > out/index.html",
+    "lint": "eslint --ignore-path .gitignore .",
+    "test": "mocha --no-exit --slow 10 --recursive -r test/support/env --check-leaks --bail test/ && ([[ -z $TRAVIS_JOB_ID ]] || npm run travis)",
+    "coverage": "mkdir -p coverage && mocha --recursive  -r blanket -r test/support/env --bail -R html-cov > coverage/index.html",
+    "travis": "mocha -r blanket -R mocha-lcov-reporter | coveralls"
+  },
+  "engines": {
+    "node": ">=0.11.0"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        ""
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "test"
+      ]
+    }
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "mocha": true
+    },
+    "rules": {
+      "consistent-return": 0,
+      "no-return-assign": 0,
+      "key-spacing": 0,
+      "no-multi-spaces": 0,
+      "no-use-before-define": [
+        2,
+        "nofunc"
+      ],
+      "curly": [
+        2,
+        "multi-line"
+      ],
+      "quotes": [
+        2,
+        "single"
+      ]
+    }
+  },
+  "author": "Anthony Foster",
+  "license": "MIT",
+  "devDependencies": {
+    "blanket": "^1.1.7",
+    "coveralls": "^2.11.3",
+    "eslint": "^0.24.1",
+    "expect": "^1.8.0",
+    "mocha": "^2.2.5",
+    "mocha-lcov-reporter": "0.0.2",
+    "spec-md": "^0.4.5"
+  },
+  "dependencies": {
+    "clone": "^1.0.2",
+    "es6-promise": "^2.3.0",
+    "mysql": "^2.8.0",
+    "sequelize": "3.4.1"
+  },
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LOKE/mysql-orm.git"
+  },
+  "keywords": [
+    "mysql",
+    "orm"
+  ],
+  "bugs": {
+    "url": "https://github.com/LOKE/mysql-orm/issues"
+  },
+  "homepage": "https://github.com/LOKE/mysql-orm#readme"
+}
