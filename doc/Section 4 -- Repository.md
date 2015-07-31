@@ -102,6 +102,8 @@ userRepo.remove(user);
 
 ## updateWhere
 
+Creates an `UPDATE` query. Returns a promise that resolves to the number of rows affected.
+
 ```js
 // UPDATE Users SET y = 5 WHERE X = 3
 userRepo.updateWhere({x: 3}, {y: 5});
