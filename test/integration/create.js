@@ -48,6 +48,7 @@ describe('insert a document', function () {
       expect(user.customer.id).toExist();
       return users.findById(user.id)
       .then(function (u) {
+        // TODO: this obviously needs to broken up into smaller tests
         expect(u.id).toBe(user.id);
         expect(u.firstName).toBe(user.firstName);
         expect(u.customer).toExist();
@@ -60,9 +61,18 @@ describe('insert a document', function () {
           .then(function (res) {
             expect(u.firstName).toEqual('Something');
             expect(u).toBe(res);
-            return users.remove(u)
-            .then(function (dres) {
-              expect(dres).toBe(1);
+            return users.updateWhere({id: u.id}, {firstName: 'B'})
+            .then(function (affectedCount) {
+              expect(affectedCount).toBe(1);
+              console.log('userId', u.id);
+              return users.findById(u.id)
+              .then(function (u2) {
+                expect(u2.firstName).toEqual('B');
+                return users.remove(u)
+                .then(function (dres) {
+                  expect(dres).toBe(1);
+                });
+              });
             });
           });
         });

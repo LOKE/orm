@@ -60,7 +60,7 @@ userRepository.persist(user);
 
 ## update
 
-Update a document by using its primary key.
+Update a document by using its primary key. Returns a promise that resolves to the number of rows affected.
 
 ```js
 userRepository.update(user, {firstName: 'ReplacementValue'});
