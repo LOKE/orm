@@ -60,7 +60,7 @@ userRepository.persist(user);
 
 ## update
 
-Update a document by using its primary key. Returns a promise that resolves to the number of rows affected.
+Update a document by using its primary key.
 
 ```js
 userRepository.update(user, {firstName: 'ReplacementValue'});
@@ -101,6 +101,8 @@ userRepo.remove(user);
 ```
 
 ## updateWhere
+
+Creates an `UPDATE` query. Returns a promise that resolves to the number of rows affected.
 
 ```js
 // UPDATE Users SET y = 5 WHERE X = 3
