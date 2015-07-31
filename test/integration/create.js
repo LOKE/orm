@@ -64,7 +64,6 @@ describe('insert a document', function () {
             return users.updateWhere({id: u.id}, {firstName: 'B'})
             .then(function (affectedCount) {
               expect(affectedCount).toBe(1);
-              console.log('userId', u.id);
               return users.findById(u.id)
               .then(function (u2) {
                 expect(u2.firstName).toEqual('B');
