@@ -113,6 +113,6 @@ Create a `DELETE` query.
 Example
 
 ```js
-// DELETE FROM User sWHERE X = 3
+// DELETE FROM Users WHERE X = 3
 userRepo.deleteWhere({x: 3});
 ```

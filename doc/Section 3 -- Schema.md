@@ -2,7 +2,7 @@
 
 Repositories allow you to query and update documents in the database.
 
-To create a repository you first need to define a schema, which describes which columns and tables to use.
+To create a repository you first must define a schema to describe which columns and database tables to use.
 
 ## Defining Schemas
 

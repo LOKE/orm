@@ -42,5 +42,4 @@ userRepository.find({firstName: 'Testing'})
 
 Documentation:
 
-See the `doc/` folder.
-TODO: Set up gh-pages branch.
+[View Documentation](http://loke.github.io/mysql-orm).
