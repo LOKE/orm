@@ -73,7 +73,7 @@ userRepository.persist(user);
 <span class="hljs-comment">// VALUES (DEFAULT, 3, 5);</span>
 
 </code></pre></section><section id="sec-remove"><h3><span class="spec-secid" title="link to this section"><a href="#sec-remove">4.9</a></span>remove</h3><p>Delete a document. Creates a <code>DELETE</code> query with the primary key.</p><p>Example:</p><pre><code>userRepo.remove(user);
-</code></pre></section><section id="sec-updateWhere"><h3><span class="spec-secid" title="link to this section"><a href="#sec-updateWhere">4.10</a></span>updateWhere</h3><pre><code><span class="hljs-comment">// UPDATE Users SET y = 5 WHERE X = 3</span>
+</code></pre></section><section id="sec-updateWhere"><h3><span class="spec-secid" title="link to this section"><a href="#sec-updateWhere">4.10</a></span>updateWhere</h3><p>Creates an <code>UPDATE</code> query. Returns a promise that resolves to the number of rows affected.</p><pre><code><span class="hljs-comment">// UPDATE Users SET y = 5 WHERE X = 3</span>
 userRepo.updateWhere({x: <span class="hljs-number">3</span>}, {y: <span class="hljs-number">5</span>});
 </code></pre></section><section id="sec-removeWhere"><h3><span class="spec-secid" title="link to this section"><a href="#sec-removeWhere">4.11</a></span>removeWhere</h3><p>Create a <code>DELETE</code> query. Example</p><pre><code><span class="hljs-comment">// DELETE FROM Users WHERE X = 3</span>
 userRepo.deleteWhere({x: <span class="hljs-number">3</span>});
