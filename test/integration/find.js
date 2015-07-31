@@ -20,13 +20,13 @@ describe('Reading from database', function () {
       name: String
     });
     var repo = db.table('users', {
-      firstName: String,
+      first: {type: String, column: 'firstName'},
       customer: customerRepo
     });
 
     return repo.find({'customer.name': 'customername'})
     .then(function (results) {
-      expect(JSON.stringify(results)).toEqual('[{"firstName":"Testing","id":1,"customer":{"name":"customername","id":41}}]');
+      expect(JSON.stringify(results)).toEqual('[{"first":"Testing","id":1,"customer":{"name":"customername","id":41}}]');
     });
   });
 });
