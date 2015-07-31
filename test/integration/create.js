@@ -21,7 +21,11 @@ describe('insert a document', function () {
     var repo = db.table('Customers', {
       name: String
     });
-    return repo.create({name: 'Testing'});
+    return repo.create({name: 'Testing'})
+    .then(function (document) {
+      expect(document).toExist();
+      expect(document.id).toExist();
+    });
   });
   it('should insert relations', function () {
     var customers = db.table('customers', {
