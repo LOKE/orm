@@ -32,6 +32,8 @@ userRepository.find({firstName: 'Testing'})
 });
 ```
 
+# [View Documentation](http://loke.github.io/mysql-orm).
+
 ## Tests
 
 `npm test`
@@ -39,7 +41,3 @@ userRepository.find({firstName: 'Testing'})
 ## Coverage
 
 `npm run coverage`
-
-Documentation:
-
-[View Documentation](http://loke.github.io/mysql-orm).
