@@ -1,14 +1,20 @@
 'use strict';
 var expect = require('expect');
 var Connection = global.lib.Connection;
+var query = global.query;
 
 describe('insert a document', function () {
   var db;
   before(function () {
     db = new Connection(process.env.MYSQL_URI);
+
+    return query.read(__dirname, 'create-up.sql');
   });
   after(function () {
-    return db.end();
+    return query.read(__dirname, 'create-down.sql')
+    .then(function () {
+      return db.end();
+    });
   });
 
   it('should be able to insert', function () {

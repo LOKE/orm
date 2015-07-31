@@ -6,9 +6,13 @@ describe('Reading from database', function () {
   var db;
   before(function () {
     db = new Connection(process.env.MYSQL_URI);
+    return global.query.read(__dirname, 'find-up.sql');
   });
   after(function () {
-    return db.end();
+    return global.query.read(__dirname, 'find-down.sql')
+    .then(function () {
+      return db.end();
+    });
   });
 
   it('should be able to find documents', function () {
