@@ -26,5 +26,14 @@ describe('Repository', function () {
       expect(d.tests).toExist();
       expect(d.tests).toEqual([]);
     });
+    it('should create objects with the correct values', function () {
+      var repo2 = new Repository(new Schema());
+      var repo = new Repository(new Schema({name: String, tests: [repo2]}));
+      var d = repo.new({name: 'test'});
+      expect(d.tests).toExist();
+      expect(d.tests).toEqual([]);
+      expect(d.name).toEqual('test');
+      expect(d.id).toBe(undefined);
+    });
   });
 });
