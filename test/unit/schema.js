@@ -11,15 +11,17 @@ describe('Schema', function () {
     var eFirstName = {
       name: 'firstName',
       column: 'first_name',
-      type: String
+      type: String,
+      defaultValue: undefined
     };
     var eLastName = {
       name: 'lastName',
-      type: String
+      type: String,
+      defaultValue: undefined
     };
     expect(schema.relations).toEqual([]);
-    expect(schema.firstName).toEqual(eFirstName);
-    expect(schema.lastName).toEqual(eLastName);
-    expect(schema.fields).toEqual([eFirstName, eLastName, {name: 'id', autoIncrement: true, primary: true, type: global.lib.Connection.prototype.Id}]);
+    expect(schema.specifiers.firstName).toEqual(eFirstName);
+    expect(schema.specifiers.lastName).toEqual(eLastName);
+    expect(schema.fields).toEqual([eFirstName, eLastName, {name: 'id', defaultValue: undefined, autoIncrement: true, primary: true, type: global.lib.Connection.prototype.Id}]);
   });
 });
