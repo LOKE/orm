@@ -100,6 +100,16 @@ Example:
 userRepo.remove(user);
 ```
 
+## delete
+
+Delete a document. By default, this will call .remove, but can be overridden to implement soft-deleting.
+
+Example:
+
+```js
+userRepo.delete(user);
+```
+
 ## updateWhere
 
 Creates an `UPDATE` query. Returns a promise that resolves to the number of rows affected.
