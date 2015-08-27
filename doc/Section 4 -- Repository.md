@@ -128,3 +128,17 @@ Example
 // DELETE FROM Users WHERE X = 3
 userRepo.deleteWhere({x: 3});
 ```
+
+
+
+## rawInsert
+
+Create a custom `INSERT` query.
+Example
+```sql
+INSERT INTO example (a,b,c) VALUES (1,2,3)
+  ON DUPLICATE KEY UPDATE c=c+:value;
+```
+```js
+exampleRepo.rawInsert(rawSQLString, {value: 1});
+```
