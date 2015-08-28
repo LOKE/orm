@@ -142,3 +142,14 @@ INSERT INTO example (a,b,c) VALUES (1,2,3)
 ```js
 exampleRepo.rawInsert(rawSQLString, {value: 1});
 ```
+
+## rawSelect
+
+Create a custom `SELECT` query.
+Example
+```sql
+SELECT * FROM example WHERE a + b < :value
+```
+```js
+exampleRepo.rawSelect(rawSQLString, {value: 300});
+```
