@@ -8,10 +8,10 @@ describe('insert a document', function () {
   before(function () {
     db = new Connection(process.env.MYSQL_URI);
 
-    return query.read(__dirname, 'create-up.sql');
+    return query.read(__dirname, 'up.sql');
   });
   after(function () {
-    return query.read(__dirname, 'create-down.sql')
+    return query.read(__dirname, 'down.sql')
     .then(function () {
       return db.end();
     });
@@ -26,6 +26,21 @@ describe('insert a document', function () {
       expect(document).toExist();
       expect(document.id).toExist();
     });
+  });
+  it('should not insert empty relations', function () {
+    var customers = db.table('customers', {
+      name: String
+    });
+    var users = db.table('users', {
+      firstName: String,
+      customer: customers,
+      customers: [customers]
+    });
+
+    var user = users.new({
+      firstName: 'John'
+    });
+    return users.persist(user);
   });
   it('should insert relations', function () {
     var customers = db.table('customers', {
@@ -42,13 +57,17 @@ describe('insert a document', function () {
         name: '6789'
       }
     });
+    expect(user.id).toBe(undefined, 'user.id === undefined');
+    expect(user.customer).toExist('user.customer');
     return users.persist(user)
     .then(function () {
-      expect(user.id).toExist();
-      expect(user.customer.id).toExist();
+      expect(user.id).toExist('user.id');
+      expect(user.customer).toExist('should still have user.customer');
+      expect(user.customer.id).toExist('user.customer.id');
       return users.findById(user.id)
       .then(function (u) {
         // TODO: this obviously needs to broken up into smaller tests
+        expect(u.id).toExist('Result of findById should have .id');
         expect(u.id).toBe(user.id);
         expect(u.firstName).toBe(user.firstName);
         expect(u.customer).toExist();
@@ -64,7 +83,6 @@ describe('insert a document', function () {
             return users.updateWhere({id: u.id}, {firstName: 'B'})
             .then(function (affectedCount) {
               expect(affectedCount).toBe(1);
-              console.log('userId', u.id);
               return users.findById(u.id)
               .then(function (u2) {
                 expect(u2.firstName).toEqual('B');
