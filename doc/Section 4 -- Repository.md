@@ -153,3 +153,15 @@ SELECT * FROM example WHERE a + b < :value
 ```js
 exampleRepo.rawSelect(rawSQLString, {value: 300});
 ```
+
+## rawUpdate
+
+Create a custom `UPDATE` query.
+Returns the number of affected rows.
+Example
+```sql
+UPDATE example SET c = c + 1 WHERE a = :a
+```
+```js
+exampleRepo.rawUpdate(rawSQLString, {a: 239});
+```
