@@ -1,19 +1,17 @@
 'use strict';
-var Schema = global.lib.Schema;
 var Writable = require('stream').Writable;
-var expect = require('expect');
-var P = typeof Promise === 'undefined' ? require('es6-promise').Promise : Promise;
+var Promise = require('../../lib/promise');
 var StreamQuery = require('../../lib/repository/base-stream');
 var through2 = require('through2');
+var READ = '_read';
+var WRITE = '_write';
 
 require('util').inherits(NullConsumer, Writable);
 function NullConsumer () {
   Writable.call(this, {objectMode: true, highWaterMark: 1});
 }
-var maxBufferSize = 0;
 var currentBuffer = 0;
-var nSent = 0;
-NullConsumer.prototype._write = function (chunk, enc, done) {
+NullConsumer.prototype[WRITE] = function (chunk, enc, done) {
   currentBuffer--;
   setTimeout(done, 1);
 };
@@ -21,6 +19,7 @@ NullConsumer.prototype._write = function (chunk, enc, done) {
 describe('StreamQuery', function () {
   it('should not buffer into a slow consumer', function (done) {
     this.timeout(10000);
+    var nSent = 0;
     var repo = {
       find: function (q, o) {
         if (nSent > 1000) return Promise.resolve([]);
@@ -34,14 +33,13 @@ describe('StreamQuery', function () {
       }
     };
     var stream = new StreamQuery(repo);
-    var _read = stream._read;
-    var nReadCalls = 0;
-    stream._read = function (n) {
-      nReadCalls++;
+    var read = stream[READ];
+    stream[READ] = function (n) {
       if (currentBuffer > 100) throw new Error('Too much reading: ' + currentBuffer);
-      _read.call(this, n);
-    }
+      read.call(this, n);
+    };
     var writable = new NullConsumer();
+
     stream
     .pipe(through2.obj())
     .pipe(through2.obj())
