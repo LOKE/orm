@@ -12,10 +12,9 @@ describe('Document', function () {
       });
       var d = new Document(undefined, schema);
       var modifier = new Modifier(d);
-      expect(modifier.getChanges()).toEqual({firstName: null, id: null});
       d.firstName = 'Anthony';
       var changes = modifier.getChanges();
-      expect(changes).toEqual({firstName: 'Anthony', id: null});
+      expect(changes).toEqual({firstName: 'Anthony', id: undefined});
       modifier.didApplyChanges({firstName: 'Testing', id: 32});
       modifier.markAsPersisted();
       expect(d.firstName).toEqual('Testing');
