@@ -18,7 +18,7 @@ describe('insert a document', function () {
   });
 
   it('should be able to insert', function () {
-    var repo = db.table('Customers', {
+    var repo = db.table('customers', {
       name: String
     });
     return repo.create({name: 'Testing'})
