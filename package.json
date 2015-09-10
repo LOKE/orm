@@ -11,7 +11,7 @@
     "travis": "mocha -r blanket -R mocha-lcov-reporter --recursive -r test/support/env test/ | coveralls"
   },
   "engines": {
-    "node": ">=0.11.0"
+    "node": ">=0.10.0"
   },
   "config": {
     "blanket": {
@@ -64,7 +64,8 @@
     "clone": "^1.0.2",
     "es6-promise": "^2.3.0",
     "mysql": "^2.9.0",
-    "sequelize": "^3.4.1"
+    "sequelize": "^3.4.1",
+    "through2": "^2.0.0"
   },
   "directories": {
     "doc": "doc",

@@ -29,4 +29,26 @@ describe('Reading from database', function () {
       expect(JSON.stringify(results)).toEqual('[{"first":"Testing","id":1,"customer":{"name":"customername","id":41}}]');
     });
   });
+  it('should be able to stream documents', function (done) {
+    var repo = db.table('users', {
+      first: {type: String, column: 'firstName'},
+    });
+
+    repo.prototype.greet = function () {
+      return 'Hello ' + this.first + '!';
+    };
+
+    var count = 0;
+    repo.stream({
+      first: 'Testing'
+    })
+    .on('data', function (data) {
+      expect(data.greet()).toBe('Hello Testing!');
+      count++;
+    })
+    .on('end', function () {
+      expect(count).toBe(1);
+      done();
+    });
+  });
 });
