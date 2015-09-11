@@ -31,7 +31,7 @@ describe('Reading from database', function () {
   });
   it('should be able to stream documents', function (done) {
     var repo = db.table('users', {
-      first: {type: String, column: 'firstName'},
+      first: {type: String, column: 'firstName'}
     });
 
     repo.prototype.greet = function () {

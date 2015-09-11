@@ -4,7 +4,7 @@ All query methods defined on repositories return a `Promise`, using native promi
 
 ## find
 
-Query documents.
+Query documents: `find(q, opts)`.
 
 Example:
 
@@ -12,13 +12,37 @@ Example:
 userRepo.find({added: {$lt: new Date('2014')});
 ```
 
+Options:
+
+- opts.attributes - list of field names to select.
+- opts.limit - Number of rows to return
+- opts.offset - Number of rows to skip
+- opts.order - E.g. `[['ID', 'ASC']]`
+
+## stream
+
+Query documents using a streaming interface.
+Same function signature as `find()`, but returns a Readable stream.
+
+```js
+userRepo.find({added: {$lt: new Date('2014')})
+.on('data', user => console.log(user.firstName))
+.on('end', () => console.log('END'));
+```
+
+Options:
+
+- opts.highWaterMark - maximum number of rows to pre-buffer in memory when there is a slow consumer.
+
 ## findOne
 
 Find the first document for a query.
 
 ```js
-Repository.prototype.findOne = function (q) {
-  return this.find(q, {limit: 1})
+Repository.prototype.findOne = function (q, opts) {
+  opts = opts || {};
+  opts.limit = 1;
+  return this.find(q, opts)
   .then(function (results) {
     return results[0] || null;
   });
@@ -30,10 +54,10 @@ Repository.prototype.findOne = function (q) {
 Find a document by its primary key.
 
 ```js
-Repository.prototype.findById = function (id) {
+Repository.prototype.findById = function (id, opts) {
   var q = {};
   q[this.schema.primaryField.name] = id;
-  return this.findOne(q);
+  return this.findOne(q, opts);
 };
 ```
 
