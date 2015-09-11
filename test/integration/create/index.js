@@ -18,7 +18,7 @@ describe('insert a document', function () {
   });
 
   it('should be able to insert', function () {
-    var repo = db.table('Customers', {
+    var repo = db.table('customers', {
       name: String
     });
     return repo.create({name: 'Testing'})
@@ -26,6 +26,22 @@ describe('insert a document', function () {
       expect(document).toExist();
       expect(document.id).toExist();
     });
+  });
+
+  it('should be able to insert multiple records simultaneously', function () {
+    var customers = db.table('customers', {
+      name: String
+    });
+    var users = db.table('users', {
+      firstName: String,
+      customers: [customers]
+    });
+
+    var promises = [];
+    for (var i = 0; i < 5; i++) {
+      promises.push(users.create({firstName: 'Testing', customers: [{name: 'testing'}]}));
+    }
+    return Promise.all(promises);
   });
   it('should not insert empty relations', function () {
     var customers = db.table('customers', {
