@@ -14,10 +14,12 @@ userRepo.find({added: {$lt: new Date('2014')});
 
 Options:
 
-- opts.attributes - list of field names to select.
-- opts.limit - Number of rows to return
-- opts.offset - Number of rows to skip
-- opts.order - E.g. `[['ID', 'ASC']]`
+| Option           | Description                      |
+| ---------------- | -------------------------------- |
+| opts.attributes  | List of field names to select   |
+| opts.limit       | Number of rows to return         |
+| opts.offset      | Number of rows to skip           |
+| opts.order       | Sort. E.g. `[['ID', 'ASC']]`     |
 
 ## stream
 
@@ -32,7 +34,14 @@ userRepo.find({added: {$lt: new Date('2014')})
 
 Options:
 
-- opts.highWaterMark - maximum number of rows to pre-buffer in memory when there is a slow consumer.
+
+| Option              | Description                      |
+| ------------------- | -------------------------------- |
+| opts.highWaterMark  | Maximum number of rows to pre-buffer in memory when there is a slow consumer   |
+| opts.attributes     | List of field names to select    |
+| opts.limit          | Number of rows to return         |
+| opts.offset         | Number of rows to skip           |
+| opts.order          | Sort. E.g. `[['ID', 'ASC']]`     |
 
 ## findOne
 
