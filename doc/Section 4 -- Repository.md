@@ -6,6 +6,8 @@ All query methods defined on repositories return a `Promise`, using native promi
 
 Query documents: `find(q, opts)`.
 
+The first argument is the query description object which is passed to *Sequelize* as the `where` parameter. As such, it can contain operators like as `$or` and `$lte`. You can find a [full list of operators in the Sequelize documentation](http://sequelize.readthedocs.org/en/latest/docs/querying/).
+
 Example:
 
 ```js
@@ -16,10 +18,11 @@ Options:
 
 | Option           | Description                      |
 | ---------------- | -------------------------------- |
-| opts.attributes  | List of field names to select   |
+| opts.attributes  | List of field names or Literal objects to select  |
 | opts.limit       | Number of rows to return         |
 | opts.offset      | Number of rows to skip           |
 | opts.order       | Sort. E.g. `[['ID', 'ASC']]`     |
+| opts.raw         | Whether to bypass casting        |
 
 ## stream
 
@@ -38,10 +41,11 @@ Options:
 | Option              | Description                      |
 | ------------------- | -------------------------------- |
 | opts.highWaterMark  | Maximum number of rows to pre-buffer in memory when there is a slow consumer   |
-| opts.attributes     | List of field names to select    |
+| opts.attributes     | List of field names or Literal objects to select |
 | opts.limit          | Number of rows to return         |
 | opts.offset         | Number of rows to skip           |
 | opts.order          | Sort. E.g. `[['ID', 'ASC']]`     |
+| opts.raw            | Whether to bypass casting        |
 
 ## findOne
 
@@ -150,6 +154,17 @@ Example:
 userRepo.delete(user);
 ```
 
+## count
+
+Count the number of rows matching a query. Uses the `COUNT(*)` SQL method.
+
+Example:
+
+```js
+userRepo.count({gender: 'FEMALE'})
+.then(n => console.log(`There are ${n} female users.`));
+```
+
 ## updateWhere
 
 Creates an `UPDATE` query. Returns a promise that resolves to the number of rows affected.
@@ -169,11 +184,26 @@ Example
 userRepo.deleteWhere({x: 3});
 ```
 
+## literal
 
+Create SQL code object Literal for use in `attributes` parameters. To avoid SQL injections the string should not contain user input.
+
+Example:
+
+```js
+exampleRepo.find({}, {
+  raw: true,
+  attributes: [exampleRepo.literal('COUNT(*) AS n')]
+})
+.then(row => {
+  // { n: 5 }
+  console.log(row);
+});
+```
 
 ## rawInsert
 
-Create a custom `INSERT` query.
+Create a custom `INSERT` query. To avoid SQL injections the string should not contain user input.
 
 Example:
 
@@ -192,7 +222,7 @@ exampleRepo.rawInsert(rawSQLString, {value: 1});
 
 ## rawSelect
 
-Create a custom `SELECT` query.
+Create a custom `SELECT` query. To avoid SQL injections the string should not contain user input.
 
 Example:
 
@@ -211,7 +241,7 @@ exampleRepo.rawSelect(rawSQLString, {value: 300});
 ## rawUpdate
 
 Create a custom `UPDATE` query.
-Returns the number of affected rows.
+Returns the number of affected rows. To avoid SQL injections the string should not contain user input.
 
 Example:
 
