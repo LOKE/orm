@@ -29,6 +29,16 @@ describe('Reading from database', function () {
       expect(JSON.stringify(results)).toEqual('[{"first":"Testing","id":1,"customer":{"name":"customername","id":41}}]');
     });
   });
+  it('should be able to count documents', function () {
+    var repo = db.table('users', {
+      first: {type: String, column: 'firstName'}
+    });
+
+    return repo.count()
+    .then(function (n) {
+      expect(n).toBe(1)
+    });
+  });
   it('should be able to stream documents', function (done) {
     var repo = db.table('users', {
       first: {type: String, column: 'firstName'}

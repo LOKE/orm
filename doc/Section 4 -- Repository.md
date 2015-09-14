@@ -150,6 +150,17 @@ Example:
 userRepo.delete(user);
 ```
 
+## count
+
+Count the number of rows matching a query. Uses the `COUNT(*)` SQL method.
+
+Example:
+
+```js
+userRepo.count({gender: 'FEMALE'})
+.then(n => console.log(`There are ${n} female users.`));
+```
+
 ## updateWhere
 
 Creates an `UPDATE` query. Returns a promise that resolves to the number of rows affected.
