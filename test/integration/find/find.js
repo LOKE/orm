@@ -33,7 +33,7 @@ describe('Reading from database', function () {
     var repo = db.table('users', {
       first: {type: String, column: 'firstName'}
     });
-
+    repo.literal('COUNT(*)');
     return repo.count()
     .then(function (n) {
       expect(n).toBe(1)
