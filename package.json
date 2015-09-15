@@ -1,6 +1,6 @@
 {
   "name": "loke-mysql-orm",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "MySQL Data Mapper",
   "main": "lib/index.js",
   "scripts": {
