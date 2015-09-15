@@ -19,9 +19,10 @@ describe('insert a document', function () {
 
   it('should be able to insert', function () {
     var repo = db.table('customers', {
-      name: String
+      name: String,
+      userId: Number
     });
-    return repo.create({name: 'Testing'})
+    return repo.create({name: 'Testing', userId: 300})
     .then(function (document) {
       expect(document).toExist();
       expect(document.id).toExist();

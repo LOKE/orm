@@ -10,8 +10,8 @@ CREATE TABLE `customers` (
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Suburb` varchar(20) NOT NULL DEFAULT '',
-  `State` int(11) DEFAULT NULL,
-  `Country` int(11) DEFAULT NULL,
+  `State` varchar(11) DEFAULT NULL,
+  `Country` varchar(255) DEFAULT NULL,
   `FirstName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `blah` (`Country`,`State`,`Suburb`)
