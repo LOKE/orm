@@ -59,4 +59,29 @@ describe('Reading from database', function () {
       expect(newUser.pets[0].id).toExist();
     });
   });
+  it('should use all primary keys when updating', function () {
+    var repo = db.table('users', {
+      FirstName: { type: String, primary: true },
+      Country: { type: String, primary: true },
+      State: { type: String }
+    });
+
+    var updateWhere = repo.updateWhere;
+
+    repo.updateWhere = function (where, updates) {
+      expect(where).toEqual({
+        FirstName: 'Test',
+        Country: 'Australia'
+      });
+      expect(updates).toEqual({
+        State: 'NSW'
+      });
+      return updateWhere.apply(this, arguments);
+    };
+    return repo.create({FirstName: 'Test', Country: 'Australia', State: 'VIC'})
+    .then(function (user) {
+      user.State = 'NSW';
+      return repo.persist(user);
+    });
+  });
 });
