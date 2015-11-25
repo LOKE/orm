@@ -39,6 +39,12 @@ describe('Reading from database', function () {
       expect(n).toBe(1)
     });
   });
+  it('should be able to select raw SQL with arrays inserted', function () {
+    var repo = db.table('users', {
+      first: {type: String, column: 'firstName'}
+    });
+    return repo.rawSelect('select * from users where firstname in (:priceTypes)', {priceTypes: ['cat', 'dog']});
+  });
   it('should be able to stream documents', function (done) {
     var repo = db.table('users', {
       first: {type: String, column: 'firstName'}

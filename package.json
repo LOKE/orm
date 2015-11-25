@@ -39,7 +39,7 @@
     "clone": "^1.0.2",
     "es6-promise": "^2.3.0",
     "mysql": "^2.9.0",
-    "sequelize": "^3.4.1",
+    "sequelize": "~3.13.0",
     "through2": "^2.0.0"
   },
   "directories": {
