@@ -238,6 +238,27 @@ code:
 exampleRepo.rawSelect(rawSQLString, {value: 300});
 ```
 
+
+## rawStream
+
+Create a custom `SELECT` query, and stream the results. To avoid SQL injections the string should not contain user input.
+
+Example:
+
+rawSQLString:
+
+```sql
+SELECT * FROM example WHERE a + b < :value
+```
+
+code:
+
+```js
+exampleRepo.rawStream(rawSQLString, {value: 300}, {highWaterMark: 5})
+.on('data', row => console.log(row));
+```
+
+
 ## rawUpdate
 
 Create a custom `UPDATE` query.
