@@ -11,8 +11,8 @@ describe('Schema', function () {
     var eFirstName = {
       name: 'firstName',
       column: 'first_name',
-      type: String,
-      defaultValue: undefined
+      defaultValue: undefined,
+      type: String
     };
     var eLastName = {
       name: 'lastName',
@@ -20,8 +20,23 @@ describe('Schema', function () {
       defaultValue: undefined
     };
     expect(schema.relations).toEqual([]);
-    expect(schema.specifiers.firstName).toEqual(eFirstName);
-    expect(schema.specifiers.lastName).toEqual(eLastName);
-    expect(schema.fields).toEqual([eFirstName, eLastName, {name: 'id', defaultValue: undefined, autoIncrement: true, primary: true, type: global.lib.Connection.prototype.Id}]);
+
+    expect(schema.specifiers.firstName.name).toBe(eFirstName.name);
+    expect(schema.specifiers.firstName.column).toBe(eFirstName.column);
+    expect(schema.specifiers.firstName.defaultValue).toBe(eFirstName.defaultValue);
+    expect(schema.specifiers.firstName.type).toBe(eFirstName.type);
+
+    expect(schema.specifiers.lastName.name).toBe(eLastName.name);
+    expect(schema.specifiers.lastName.column).toBe(eLastName.column);
+    expect(schema.specifiers.lastName.defaultValue).toBe(eLastName.defaultValue);
+    expect(schema.specifiers.lastName.type).toBe(eLastName.type);
+
+    expect(schema.specifiers.id.name).toBe('id');
+    expect(schema.specifiers.id.defaultValue).toBe(undefined);
+    expect(schema.specifiers.id.type).toBe(global.lib.Connection.prototype.Id);
+    expect(schema.specifiers.id.autoIncrement).toBe(true);
+    expect(schema.specifiers.id.primary).toBe(true);
+
+    expect(schema.fields.length).toBe(3);
   });
 });
