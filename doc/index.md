@@ -1,4 +1,4 @@
-mysl-orm
+mysql-orm
 --------
 
 **Introduction**
