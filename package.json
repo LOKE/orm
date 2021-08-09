@@ -6,12 +6,13 @@
   "scripts": {
     "build-doc": "mkdir -p out; cp node_modules/spec-md/css/* out; spec-md doc/index.md > out/index.html",
     "lint": "eslint --ignore-path .gitignore .",
+    "lint-fix": "eslint --fix --ignore-path .gitignore .",
     "test": "mocha --no-exit --slow 10 --recursive -r test/support/env --check-leaks --bail test/",
     "coverage": "mkdir -p coverage && mocha --recursive -r blanket -r test/support/env --bail -R html-cov > coverage/index.html",
     "coveralls": "mocha -r blanket -R mocha-lcov-reporter --recursive -r test/support/env test/ | coveralls"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=10.0.0"
   },
   "config": {
     "blanket": {
@@ -24,15 +25,18 @@
       ]
     }
   },
-  "author": "Anthony Foster",
+  "author": "LOKE",
   "license": "MIT",
   "devDependencies": {
     "blanket": "^1.1.7",
     "coveralls": "^2.11.4",
-    "eslint": "^1.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "expect": "^1.9.0",
     "mocha": "^2.3.2",
     "mocha-lcov-reporter": "0.0.2",
+    "prettier": "^2.3.2",
     "spec-md": "^0.4.5"
   },
   "dependencies": {
