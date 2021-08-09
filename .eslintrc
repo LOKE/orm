@@ -1,14 +1,16 @@
 {
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
   "env": {
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "es6": true
   },
   "rules": {
     "consistent-return": 0,
     "no-return-assign": 0,
-    "key-spacing": 0,
-    "no-multi-spaces": 0,
     "no-use-before-define": [
       2,
       "nofunc"
@@ -16,10 +18,6 @@
     "curly": [
       2,
       "multi-line"
-    ],
-    "quotes": [
-      2,
-      "single"
     ]
   }
 }
