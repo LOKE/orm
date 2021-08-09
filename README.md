@@ -1,4 +1,4 @@
-# loke-mysql-orm
+# @loke/mysql-orm
 
 [![NPM Version](https://img.shields.io/npm/v/loke-mysql-orm.svg)](https://www.npmjs.com/package/loke-mysql-orm)
 [![Build Status](https://img.shields.io/travis/LOKE/mysql-orm/master.svg)](https://travis-ci.org/LOKE/mysql-orm)
@@ -8,28 +8,28 @@
 
 ## Install
 
-`npm install --save loke-mysql-orm`
+`npm install @loke/mysql-orm`
 
 ## Example
 
 ```js
-var db = require('loke-mysql-orm').create('mysql://root@localhost/demo');
-var petRepository = db.table('Pets', {
+const db = require('@loke/mysql-orm').create('mysql://root@localhost/demo');
+const petRepository = db.table('Pets', {
   name: { type: String, defaultValue: () => 'Untitled' },
   description: db.Text
 });
-var userRepository = db.table('Users', {
+const userRepository = db.table('Users', {
   firstName: db.String,
   lastName: db.String,
   pets: [petRepository]
 });
 
 userRepository.find({firstName: 'Testing'})
-.then(function (users) {
-  users[0].pets[0].description = 'Hello World!';
-  // Save changes:
-  return userRepository.persist(users[0]);
-});
+  .then(function (users) {
+    users[0].pets[0].description = 'Hello World!';
+    // Save changes:
+    return userRepository.persist(users[0]);
+  });
 ```
 
 # [View Documentation](http://loke.github.io/mysql-orm).

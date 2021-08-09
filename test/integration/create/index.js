@@ -1,17 +1,18 @@
 "use strict";
 var expect = require("expect");
+
 var Connection = global.lib.Connection;
-var query = global.query;
+var { readQuery } = global;
 
 describe("insert a document", function () {
   var db;
   before(function () {
     db = new Connection(process.env.MYSQL_URI);
 
-    return query.read(__dirname, "up.sql");
+    return readQuery(__dirname, "up.sql");
   });
   after(function () {
-    return query.read(__dirname, "down.sql").then(function () {
+    return readQuery(__dirname, "down.sql").then(function () {
       return db.end();
     });
   });

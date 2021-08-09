@@ -1,6 +1,6 @@
 # Repository
 
-All query methods defined on repositories return a `Promise`, using native promises if available, and otherwise falling back to using the [`es6-promise`](https://www.npmjs.com/package/es6-promise) library on NPM. If you want it to use a different promise implementation use the `require('loke-mysql-orm').setPromiseConstructor(Promise)` method.
+All query methods defined on repositories return a `Promise`.
 
 ## find
 

@@ -27,10 +27,10 @@ describe("Reading from database", function () {
       address: addrRepo,
     });
 
-    return global.query.read(__dirname, "up.sql");
+    return global.readQuery(__dirname, "up.sql");
   });
   after(function () {
-    return global.query.read(__dirname, "down.sql").then(function () {
+    return global.readQuery(__dirname, "down.sql").then(function () {
       return db.end();
     });
   });

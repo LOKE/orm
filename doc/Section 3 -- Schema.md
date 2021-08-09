@@ -24,7 +24,7 @@ Connection.prototype.table = function (tableName, schemaDescription) {
 Example Usage:
 
 ```js
-var db = require('loke-mysql-orm').create('mysql://root@localhost/demo');
+var db = require('@loke/mysql-orm').create('mysql://root@localhost/demo');
 
 var userRepo = db.table('Users', {
   firstName: {type: db.String},
@@ -39,7 +39,7 @@ Relations are defined by using another repository instance as a `type` value.
 Example Usage:
 
 ```js
-var db = require('loke-mysql-orm').create('mysql://root@localhost/demo');
+var db = require('@loke/mysql-orm').create('mysql://root@localhost/demo');
 
 var address  = db.table('Addresses', { suburb : String });
 var petsRepo = db.table('Pets',      { name   : String });
