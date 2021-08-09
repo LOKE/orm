@@ -1,10 +1,8 @@
 # @loke/mysql-orm
 
-[![NPM Version](https://img.shields.io/npm/v/loke-mysql-orm.svg)](https://www.npmjs.com/package/loke-mysql-orm)
-[![Build Status](https://img.shields.io/travis/LOKE/mysql-orm/master.svg)](https://travis-ci.org/LOKE/mysql-orm)
-[![Coverage Status](https://img.shields.io/coveralls/LOKE/mysql-orm/master.svg)](https://coveralls.io/r/LOKE/mysql-orm?branch=master)
-[![NPM Downloads](https://img.shields.io/npm/dm/loke-mysql-orm.svg)](https://www.npmjs.com/package/loke-mysql-orm)
-[![License](https://img.shields.io/npm/l/loke-mysql-orm.svg)](https://www.npmjs.com/package/loke-mysql-orm)
+[![NPM Version](https://img.shields.io/npm/v/loke-mysql-orm.svg)](https://www.npmjs.com/package/@loke/mysql-orm)
+[![NPM Downloads](https://img.shields.io/npm/dm/loke-mysql-orm.svg)](https://www.npmjs.com/package/@loke/mysql-orm)
+[![License](https://img.shields.io/npm/l/loke-mysql-orm.svg)](https://www.npmjs.com/package/@loke/mysql-orm)
 
 ## Install
 

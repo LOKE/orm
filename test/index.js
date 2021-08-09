@@ -36,7 +36,6 @@ before(function () {
       return resetConnection.end();
     })
     .then(function () {
-      console.log("Creating connection to " + dbURL);
       connection = mysql.createConnection(dbURL);
     });
 });

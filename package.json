@@ -4,44 +4,31 @@
   "description": "MySQL Data Mapper",
   "main": "lib/index.js",
   "scripts": {
-    "build-doc": "mkdir -p out; cp node_modules/spec-md/css/* out; spec-md doc/index.md > out/index.html",
+    "build-doc": "mkdir -p out; spec-md doc/index.md > out/index.html",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "eslint --fix --ignore-path .gitignore .",
     "test": "mocha --no-exit --slow 10 --recursive -r test/support/env --check-leaks --bail test/",
-    "coverage": "mkdir -p coverage && mocha --recursive -r blanket -r test/support/env --bail -R html-cov > coverage/index.html",
-    "coveralls": "mocha -r blanket -R mocha-lcov-reporter --recursive -r test/support/env test/ | coveralls"
+    "coverage": "nyc --reporter=text mocha --no-exit --slow 10 --recursive -r test/support/env --check-leaks --bail test/"
   },
   "engines": {
     "node": ">=12.0.0"
   },
-  "config": {
-    "blanket": {
-      "pattern": [
-        ""
-      ],
-      "data-cover-never": [
-        "node_modules",
-        "test"
-      ]
-    }
-  },
   "author": "LOKE",
   "license": "MIT",
   "devDependencies": {
-    "blanket": "^1.1.7",
-    "coveralls": "^2.11.4",
+    "@types/clone": "^2.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "expect": "^1.9.0",
-    "mocha": "^2.3.2",
-    "mocha-lcov-reporter": "0.0.2",
+    "mocha": "^9.0.3",
+    "nyc": "^15.1.0",
     "prettier": "^2.3.2",
-    "spec-md": "^0.4.5"
+    "spec-md": "^3.0.2"
   },
   "dependencies": {
     "clone": "^2.1.2",
-    "mysql2": "^2.2.5",
+    "mysql2": "^2.3.0",
     "sequelize": "^6.6.5",
     "through2": "^4.0.2"
   },
