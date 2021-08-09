@@ -1,5 +1,6 @@
-'use strict';
+"use strict";
 
-process.env.MYSQL_URI = 'mysql://root@localhost/ormtest?multipleStatements=true';
+process.env.MYSQL_URI =
+  "mysql://root@localhost/ormtest?multipleStatements=true";
 
-global.lib = require('../../');
+global.lib = require("../../");
