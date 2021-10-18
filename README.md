@@ -4,6 +4,28 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/loke-mysql-orm.svg)](https://www.npmjs.com/package/@loke/mysql-orm)
 [![License](https://img.shields.io/npm/l/loke-mysql-orm.svg)](https://www.npmjs.com/package/@loke/mysql-orm)
 
+## Breaking Changes
+
+1) You must now import Connection from the module.
+
+Before: `const Connection = require("@loke/mysql-orm");`
+
+After: `const { Connection } = require("@loke/mysql-orm");`
+
+2) `create` and `createConnection` are gone. Please use `Connection`.
+
+3) `$` operators are gone, as per underlying Sequelize update. You should import `Op` instead.
+
+Before: `myRepo.find({ age: {$gt: 18} })`
+
+After:
+
+```js
+const { Op } = require("@loke/mysql-orm");
+myRepo.find({ age: {[Op.gt]: 18} })
+```
+
+1) You can still use `$` operators by declaring them in the connection options using the field `operatorsAliases`. See sequelize documentation for more details.
 ## Install
 
 `npm install @loke/mysql-orm`
@@ -11,7 +33,8 @@
 ## Example
 
 ```js
-const db = require('@loke/mysql-orm').create('mysql://root@localhost/demo');
+const { Connection } = require('@loke/mysql-orm');
+const db = new Connection('mysql://root@localhost/demo');
 const petRepository = db.table('Pets', {
   name: { type: String, defaultValue: () => 'Untitled' },
   description: db.Text
@@ -39,3 +62,4 @@ userRepository.find({firstName: 'Testing'})
 ## Coverage
 
 `npm run coverage`
+
