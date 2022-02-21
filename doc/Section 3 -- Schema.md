@@ -16,7 +16,7 @@ The `db.table` method allows creating repositories with a schema description.
  * @return {Repository} model constructor
  */
 Connection.prototype.table = function (tableName, schemaDescription) {
-  var schema = new Schema(schemaDescription);
+  const schema = new Schema(schemaDescription);
   return new SequelizeRepository(sequelize, tableName, schema);
 };
 ```
@@ -24,9 +24,10 @@ Connection.prototype.table = function (tableName, schemaDescription) {
 Example Usage:
 
 ```js
-var db = require('@loke/mysql-orm').create('mysql://root@localhost/demo');
+const { Connection } = require('@loke/mysql-orm');
+const db = new Connection('mysql://root@localhost/demo');
 
-var userRepo = db.table('Users', {
+const userRepo = db.table('Users', {
   firstName: {type: db.String},
   birthdate: {type: db.Date}
 });
@@ -39,12 +40,13 @@ Relations are defined by using another repository instance as a `type` value.
 Example Usage:
 
 ```js
-var db = require('@loke/mysql-orm').create('mysql://root@localhost/demo');
+const { Connection } = require('@loke/mysql-orm');
+const db = new Connection('mysql://root@localhost/demo');
 
-var address  = db.table('Addresses', { suburb : String });
-var petsRepo = db.table('Pets',      { name   : String });
+const address  = db.table('Addresses', { suburb : String });
+const petsRepo = db.table('Pets',      { name   : String });
 
-var userRepo = db.table('Users', {
+const userRepo = db.table('Users', {
   address  : { type: address },   // Defines a `HasOne` relation
   pets     : { type: [petsRepo] } // Defines a `HasMany` relation
 });

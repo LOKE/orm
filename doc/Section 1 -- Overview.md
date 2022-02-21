@@ -9,7 +9,8 @@ npm install --save @loke/mysql-orm
 ## Example
 
 ```js
-const db = require('@loke/mysql-orm').create('mysql://root@localhost/demo');
+const { Connection } = require('@loke/mysql-orm');
+const db = new Connection('mysql://root@localhost/demo');
 const petRepository = db.table('Pets', {
   name: { type: String, defaultValue: () => 'Untitled' },
   description: db.Text

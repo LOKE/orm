@@ -29,6 +29,8 @@
   "dependencies": {
     "clone": "^2.1.2",
     "mysql2": "^2.3.0",
+    "pg": "^8.7.3",
+    "pg-query-stream": "^4.2.3",
     "sequelize": "^6.6.5",
     "through2": "^4.0.2"
   },
