@@ -1,7 +1,7 @@
 {
-  "name": "@loke/mysql-orm",
-  "version": "2.0.0-beta2",
-  "description": "MySQL Data Mapper",
+  "name": "@loke/orm",
+  "version": "2.0.0-beta3",
+  "description": "Sequelize based ORM for MySql and Postgres",
   "main": "lib/index.js",
   "scripts": {
     "build-doc": "mkdir -p out; spec-md doc/index.md > out/index.html",
@@ -44,6 +44,7 @@
   },
   "keywords": [
     "mysql",
+    "postgres",
     "orm"
   ],
   "bugs": {
