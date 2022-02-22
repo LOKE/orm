@@ -1,6 +1,6 @@
 {
   "name": "@loke/orm",
-  "version": "2.0.0-beta4",
+  "version": "2.0.0-beta5",
   "description": "Sequelize based ORM for MySql and Postgres",
   "main": "lib/index.js",
   "scripts": {
