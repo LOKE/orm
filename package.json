@@ -34,7 +34,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "expect": "^1.9.0",
-    "mocha": "^2.3.2",
+    "mocha": "^10.1.0",
     "mocha-lcov-reporter": "0.0.2",
     "prettier": "^2.3.2",
     "spec-md": "^0.4.5"
