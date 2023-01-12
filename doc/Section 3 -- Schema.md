@@ -24,7 +24,7 @@ Connection.prototype.table = function (tableName, schemaDescription) {
 Example Usage:
 
 ```js
-const { Connection } = require('@loke/mysql-orm');
+const { Connection } = require('@loke/orm');
 const db = new Connection('mysql://root@localhost/demo');
 
 const userRepo = db.table('Users', {
@@ -40,7 +40,7 @@ Relations are defined by using another repository instance as a `type` value.
 Example Usage:
 
 ```js
-const { Connection } = require('@loke/mysql-orm');
+const { Connection } = require('@loke/orm');
 const db = new Connection('mysql://root@localhost/demo');
 
 const address  = db.table('Addresses', { suburb : String });

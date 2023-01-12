@@ -1,9 +1,9 @@
-mysql-orm
+orm
 --------
 
 **Introduction**
 
-A MYSQL model framework for Node.js based on the repository pattern.
+A MYSQL/Postgres model framework for Node.js based on the repository pattern.
 
 # [Overview](Section%201%20--%20Overview.md)
 

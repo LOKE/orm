@@ -31,7 +31,7 @@
     "mysql2": "^2.3.3",
     "pg": "^8.8.0",
     "pg-query-stream": "^4.2.4",
-    "sequelize": "^6.24.0",
+    "sequelize": "^6.28.0",
     "through2": "^4.0.2"
   },
   "directories": {
@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LOKE/mysql-orm.git"
+    "url": "git+https://github.com/LOKE/orm.git"
   },
   "keywords": [
     "mysql",
@@ -48,7 +48,7 @@
     "orm"
   ],
   "bugs": {
-    "url": "https://github.com/LOKE/mysql-orm/issues"
+    "url": "https://github.com/LOKE/orm/issues"
   },
-  "homepage": "https://github.com/LOKE/mysql-orm#readme"
+  "homepage": "https://github.com/LOKE/orm#readme"
 }

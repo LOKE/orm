@@ -3,13 +3,13 @@
 ## Installation
 
 ```
-npm install --save @loke/mysql-orm
+npm install --save @loke/orm
 ```
 
 ## Example
 
 ```js
-const { Connection } = require('@loke/mysql-orm');
+const { Connection } = require('@loke/orm');
 const db = new Connection('mysql://root@localhost/demo');
 const petRepository = db.table('Pets', {
   name: { type: String, defaultValue: () => 'Untitled' },
