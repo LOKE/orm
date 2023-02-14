@@ -21,7 +21,11 @@ const { Op } = require("@loke/orm");
 myRepo.find({ age: {[Op.gt]: 18} })
 ```
 
-1) You can still use `$` operators by declaring them in the connection options using the field `operatorsAliases`. See sequelize documentation for more details.
+4) You can still use `$` operators by declaring them in the connection options using the field `operatorsAliases`. See sequelize documentation for more details.
+
+5) `sequelize`, `pg` and `mysql2` are now peer dependencies. You must install them yourself.
+
+
 ## Install
 
 `npm install @loke/orm`

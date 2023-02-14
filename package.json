@@ -22,16 +22,21 @@
     "eslint-plugin-prettier": "^3.4.1",
     "expect": "^1.9.0",
     "mocha": "^9.2.2",
+    "mysql2": "^3.1.2",
     "nyc": "^15.1.0",
+    "pg": "^8.9.0",
     "prettier": "^2.7.1",
+    "sequelize": "^6.28.0",
     "spec-md": "^3.0.2"
+  },
+  "peerDependencies": {
+    "mysql2": ">=2 <=3",
+    "pg": "8.x",
+    "sequelize": "6.x"
   },
   "dependencies": {
     "clone": "^2.1.2",
-    "mysql2": "^2.3.3",
-    "pg": "^8.8.0",
-    "pg-query-stream": "^4.2.4",
-    "sequelize": "^6.28.0",
+    "pg-query-stream": "^4.3.0",
     "through2": "^4.0.2"
   },
   "directories": {
