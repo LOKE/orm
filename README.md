@@ -1,5 +1,9 @@
 # @loke/orm
 
+This package is only used in some legacy systems at LOKE, and as such is deprecated.
+
+Dependency updates and changes will be limited to security and features to transition away from the system.
+
 ## Breaking Changes
 
 1) You must now import Connection from the module.
