@@ -1,50 +1,43 @@
 {
-  "name": "@loke/mysql-orm",
-  "version": "1.13.1",
-  "description": "MySQL Data Mapper",
+  "name": "@loke/orm",
+  "version": "2.0.0-beta6",
+  "description": "Sequelize based ORM for MySql and Postgres",
   "main": "lib/index.js",
   "scripts": {
-    "build-doc": "mkdir -p out; cp node_modules/spec-md/css/* out; spec-md doc/index.md > out/index.html",
+    "build-doc": "mkdir -p out; spec-md doc/index.md > out/index.html",
     "lint": "eslint --ignore-path .gitignore .",
     "lint-fix": "eslint --fix --ignore-path .gitignore .",
     "test": "mocha --no-exit --slow 10 --recursive -r test/support/env --check-leaks --bail test/",
-    "coverage": "mkdir -p coverage && mocha --recursive -r blanket -r test/support/env --bail -R html-cov > coverage/index.html",
-    "coveralls": "mocha -r blanket -R mocha-lcov-reporter --recursive -r test/support/env test/ | coveralls"
+    "coverage": "nyc --reporter=text mocha --no-exit --slow 10 --recursive -r test/support/env --check-leaks --bail test/"
   },
   "engines": {
-    "node": ">=10.0.0"
-  },
-  "config": {
-    "blanket": {
-      "pattern": [
-        ""
-      ],
-      "data-cover-never": [
-        "node_modules",
-        "test"
-      ]
-    }
+    "node": ">=12.0.0"
   },
   "author": "LOKE",
   "license": "MIT",
   "devDependencies": {
-    "blanket": "^1.1.7",
-    "coveralls": "^2.11.4",
+    "@types/clone": "^2.1.1",
     "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^3.4.1",
     "expect": "^1.9.0",
-    "mocha": "^2.3.2",
-    "mocha-lcov-reporter": "0.0.2",
-    "prettier": "^2.3.2",
-    "spec-md": "^0.4.5"
+    "mocha": "^9.2.2",
+    "mysql2": "^3.1.2",
+    "nyc": "^15.1.0",
+    "pg": "^8.9.0",
+    "prettier": "^2.7.1",
+    "sequelize": "^6.28.0",
+    "spec-md": "^3.0.2"
+  },
+  "peerDependencies": {
+    "mysql2": ">=2 <=3",
+    "pg": "8.x",
+    "sequelize": "6.x"
   },
   "dependencies": {
-    "clone": "^1.0.2",
-    "es6-promise": "^2.3.0",
-    "mysql": "^2.9.0",
-    "sequelize": "~3.30.4",
-    "through2": "^2.0.0"
+    "clone": "^2.1.2",
+    "pg-query-stream": "^4.3.0",
+    "through2": "^4.0.2"
   },
   "directories": {
     "doc": "doc",
@@ -52,14 +45,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LOKE/mysql-orm.git"
+    "url": "git+https://github.com/LOKE/orm.git"
   },
   "keywords": [
     "mysql",
+    "postgres",
     "orm"
   ],
   "bugs": {
-    "url": "https://github.com/LOKE/mysql-orm/issues"
+    "url": "https://github.com/LOKE/orm/issues"
   },
-  "homepage": "https://github.com/LOKE/mysql-orm#readme"
+  "homepage": "https://github.com/LOKE/orm#readme"
 }

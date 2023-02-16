@@ -1,0 +1,44 @@
+on: push
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        # Docker Hub image
+        image: postgres:12
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        ports:
+          - 5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      mysql:
+        image: mysql:5.7
+        env:
+            MYSQL_DATABASE: ormtest
+            MYSQL_ROOT_PASSWORD: ormtest
+            # MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            # MYSQL_USER: user
+            # MYSQL_PASSWORD: password
+        ports:
+            - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npm run coverage
+        env:
+            GH_ACTIONS_MYSQL_URI: "mysql://root:ormtest@localhost:${{job.services.mysql.ports[3306]}}/ormtest?multipleStatements=true"
+            GH_ACTIONS_PG_URI: "postgres://postgres:postgres@localhost:${{job.services.postgres.ports[5432]}}/ormtest"
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
